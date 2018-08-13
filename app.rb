@@ -37,14 +37,10 @@ post '/visit' do
 			:phone => 'Введите телефон',
 			:datetime => 'Введите дату', }
 
-	hh.each do |key, value|
-		
-		if params[key] == ''
-			@error = hh[key]
+	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 
-			return erb :visit
-		end
-
+	if @error != ''
+		return erb :visit
 	end
 
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@master}, #{@color}"
