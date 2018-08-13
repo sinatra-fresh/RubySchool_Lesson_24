@@ -93,4 +93,13 @@ post '/admin' do
 		return erb :admin
 	end
 
+	if @login == 'admin' && @password == 'admin1123'
+
+	
+
+	else
+		@error = "Логин или пароль не верный"
+		erb :admin
+	end
+
 end
