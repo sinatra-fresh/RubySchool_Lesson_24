@@ -95,7 +95,7 @@ post '/admin' do
 
 	if @login == 'admin' && @password == 'admin1123'
 
-	
+	#код вывода записавшихся клиентов
 
 	else
 		@error = "Логин или пароль не верный"
