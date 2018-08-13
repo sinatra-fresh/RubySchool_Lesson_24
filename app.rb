@@ -37,6 +37,10 @@ post '/visit' do
 			:phone => 'Введите телефон',
 			:datetime => 'Введите дату', }
 
+	f = File.open "./public/users.txt", 'a'
+	f.write "Name: #{@username}. Phone: #{@phone}. Date and Time: #{@datetime}. Master: #{@master}. Color: #{@color}"
+	f.close
+
 	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 
 	if @error != ''
@@ -44,5 +48,27 @@ post '/visit' do
 	end
 
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@master}, #{@color}"
+
+end
+
+post '/contact' do
+	
+	@email = params[:email]
+	@message = params[:message]
+
+	hh = { 	:email  => 'Введите email',
+			:message => 'Введите отзыв'}
+
+	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
+
+	if @error != ''
+		return erb :contact
+	end
+
+	f = File.open "./public/message.txt", 'a'
+	f.write "Email: #{@email}. Message: #{@message}."
+	f.close
+
+	erb "Спасибо за отзыв."
 
 end
