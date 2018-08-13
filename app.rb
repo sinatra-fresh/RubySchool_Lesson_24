@@ -76,3 +76,21 @@ post '/contact' do
 	erb "Спасибо за отзыв."
 
 end
+
+post '/admin' do
+	
+	@login = params[:login]
+	@password = params[:password]
+
+	hh = {
+		:login => 'Введите логин.',
+		:password => 'Введите пароль'
+	}
+
+	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
+
+	if @error != ''
+		return erb :admin
+	end
+
+end
