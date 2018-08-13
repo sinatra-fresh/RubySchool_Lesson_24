@@ -23,6 +23,10 @@ get '/visit' do
 	erb :visit
 end
 
+get '/admin' do
+	erb :admin
+end
+
 #POST запросы:
 
 post '/visit' do
